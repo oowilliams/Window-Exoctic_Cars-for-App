@@ -1,0 +1,57 @@
+﻿<Page
+    x:Class="Exotic_Cars.CarsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Exotic_Cars"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:Exotic_Cars.model"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Key="PhotoDataTemplate" x:DataType="data:Photo">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
+                <Image Name="image"  Source="{x:Bind images}" HorizontalAlignment="Center" Stretch="UniformToFill"/>
+                <StackPanel Margin="20,20,0,10">
+                    <TextBlock FontSize="24" Text="{x:Bind photoTitle}" HorizontalAlignment="Center"/>
+                    <TextBlock FontSize="24" Text="{x:Bind price}" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+
+
+    <Grid Margin="20" Background="#FF421E1E">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+        <Grid>
+           
+            <TextBlock Grid.Column="1"
+                   Name="ResultTextBox"
+                   Foreground="Red"
+                   FontWeight="Bold"
+                   Margin="20,20,0,0"/>
+            <ListView ItemsSource="{x:Bind photos}" 
+                      ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                      ScrollViewer.HorizontalScrollMode="Enabled"
+                      ScrollViewer.VerticalScrollMode="Enabled"
+                      ScrollViewer.IsHorizontalRailEnabled="True"
+                  ItemClick="ListView_ItemClick"
+                  IsItemClickEnabled="True"
+                  ItemTemplate="{ThemeResource PhotoDataTemplate}" RenderTransformOrigin="0.5,0.5">
+            
+            </ListView>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <StackPanel >
+                <TextBlock x:Name="carSelection" FontSize="30" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                <Button x:Name="myBut" Content="submit" Height="40" Width="100" Click="myBut_Click" HorizontalAlignment="Center" Margin="0,20,0,0" />
+
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</Page>
